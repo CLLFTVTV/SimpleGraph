@@ -68,7 +68,8 @@ Shader "Graph/Point Surface" {
             //This can be done in shaders by only assigning to surface.Albedo.rg and only using input.worldPos.xy. That way the blue component stays zero.
             //As red plus green results in yellow this will make the points start near black at the bottom left,
             //turn green as Y initially increases quicker than X, turn yellow as X catches up, turn slightly orange as X increases faster, and finally end near bright yellow at the top right.
-            surface.Albedo.rg = input.worldPos.xy * 0.5 + 0.5;
+            //Saturate is a shader function that clamps values to the 0–1 range.
+            surface.Albedo.rg = saturate(input.worldPos.xy * 0.5 + 0.5);
         }
 
         ENDCG
