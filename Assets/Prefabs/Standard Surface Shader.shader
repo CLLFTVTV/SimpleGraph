@@ -69,7 +69,11 @@ Shader "Graph/Point Surface" {
             //As red plus green results in yellow this will make the points start near black at the bottom left,
             //turn green as Y initially increases quicker than X, turn yellow as X catches up, turn slightly orange as X increases faster, and finally end near bright yellow at the top right.
             //Saturate is a shader function that clamps values to the 0–1 range.
-            surface.Albedo.rg = saturate(input.worldPos.xy * 0.5 + 0.5);
+
+            //Adding a Third Dimension to Color:
+            //Currently our shader only uses the X and Y world position to set the color, leaving the Z position unused.
+            //With Z no longer constant, change our Point Surface shader so it also modifies the blue albedo component, by removing the .rg and .xy code from the assignment.
+            surface.Albedo = saturate(input.worldPos * 0.5 + 0.5);
         }
 
         ENDCG

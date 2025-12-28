@@ -155,7 +155,7 @@ Camera:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.06648272, g: 0.10666606, b: 0.16981131, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -179,8 +179,8 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 32
-  orthographic: 1
+  field of view: 70
+  orthographic: 0
   orthographic size: 1.5
   m_Depth: -1
   m_CullingMask:
@@ -205,8 +205,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: 0.247042, y: -0.37032977, z: 0.10285013, w: 0.88952124}
+  m_LocalPosition: {x: 1.4053367, y: 0.99955994, z: -1.6160556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -285,13 +285,13 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10
+  m_Intensity: 1.41
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -347,13 +347,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.99939996, z: -0.03463787, w: 0}
+  m_LocalRotation: {x: 0.23911765, y: -0.3696438, z: 0.09904577, w: 0.89239913}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 3.97, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: -45, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,6 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Graph
   pointPrefab: {fileID: 2643992351912262096, guid: 1a61ec3e800b3a342a59625d3d641adf, type: 3}
   resolution: 50
+  function: 2
 --- !u!4 &424874863
 Transform:
   m_ObjectHideFlags: 0

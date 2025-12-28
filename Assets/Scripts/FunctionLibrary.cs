@@ -9,34 +9,41 @@ public static class FunctionLibrary
     public enum FunctionName { Wave, MultiWave, Ripple }
 
     static Function[] functions = { Wave, MultiWave, Ripple };
-    public delegate float Function(float x, float t);
+    public delegate Vector3 Function (float u, float v, float t);
     public static Function GetFunction (FunctionName name) {
 		return functions[(int)name];
 	}
 
     //By default methods are instance methods, which means that they have to be invoked on an object instance.
     //To make them work directly at the class level we have to mark it as static, just like FunctionLibrary itself.
-    public static float Wave(float x, float t)
-    {
-        return Sin(PI * (x + t));
-    }
-
-    //Another, more complex function: a multi-wave.
-    public static float MultiWave(float x, float t)
-    {
-        //We want to keep the original sine wave, and then add other functions on top of it.
-        //To make that easy, we first assign in to a variable, then return that variable.
-        float y = Sin(PI * (x + 0.5f * t));
-        y += 0.5f * Sin(2f * PI * (x + t));
-		return y * (2f / 3f);
-    }
-
-    //Ripple function
-    public static float Ripple (float x, float t) {
-		float d = Abs(x);
-        float y = Sin(PI * (4f * d - t));
-		return y / (1f + 10f * d);
+    public static Vector3 Wave (float u, float v, float t) {
+		Vector3 p;
+		p.x = u;
+		p.y = Sin(PI * (u + v + t));
+		p.z = v;
+		return p;
 	}
 
-    
+    //Another, more complex function: a multi-wave.
+    public static Vector3 MultiWave (float u, float v, float t) {
+		Vector3 p;
+		p.x = u;
+		p.y = Sin(PI * (u + 0.5f * t));
+		p.y += 0.5f * Sin(2f * PI * (v + t));
+		p.y += Sin(PI * (u + v + 0.25f * t));
+		p.y *= 1f / 2.5f;
+		p.z = v;
+		return p;
+	}
+
+    //Ripple function
+   public static Vector3 Ripple (float u, float v, float t) {
+		float d = Sqrt(u * u + v * v);
+		Vector3 p;
+		p.x = u;
+		p.y = Sin(PI * (4f * d - t));
+		p.y /= 1f + 10f * d;
+		p.z = v;
+		return p;
+	}
 }
