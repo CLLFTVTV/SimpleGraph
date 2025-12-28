@@ -19,8 +19,8 @@ public class Graph : MonoBehaviour
     // To make this possible we're going to use an array to keep a reference to our points.
     Transform[] points;
 
-    [SerializeField, Range(0, 2)]
-    int function;
+    [SerializeField]
+	FunctionLibrary.FunctionName function;
 
     void Awake()
     {
