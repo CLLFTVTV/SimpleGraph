@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,13 +11,16 @@ public class Graph : MonoBehaviour
     Transform pointPrefab = default;
 
     //The resolution determines how many points we will use to represent the graph.
-    [SerializeField, Range(10, 100)]
+    [SerializeField, Range(10, 200)]
     int resolution = 10;
 
     //To animate the graph we'll have to adjust its points as time progresses. We could do this by deleting all points and creating new ones each update,
     //but that's an inefficient way to do this. It's much better to keep using the same points, adjusting their positions each update.
     // To make this possible we're going to use an array to keep a reference to our points.
     Transform[] points;
+
+    [SerializeField, Range(0, 2)]
+    int function;
 
     void Awake()
     {
@@ -51,6 +55,8 @@ public class Graph : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FunctionLibrary.Function f = FunctionLibrary.GetFunction(function);
+
         float time = Time.time;
         for (int i = 0; i < points.Length; i++) {
             Transform point = points[i];
@@ -61,8 +67,8 @@ public class Graph : MonoBehaviour
             //To animate this function, add the current game time to X before calculating the sine function. It's found via Time.time.
             //If we scale the time by π as well the function will repeat every two seconds. So use f(x,t)=sin(π(x+t)), where t is the elapsed game time.
             // This will advance the sine wave as time progresses, shifting it in the negative X direction.
-            position.y = Mathf.Sin(Mathf.PI * (position.x + time));
-            point.localPosition = position;
+            position.y = f(position.x, time);
+			point.localPosition = position;
         }
     }
 }
