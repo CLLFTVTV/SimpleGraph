@@ -6,6 +6,12 @@ using static UnityEngine.Mathf; //Import the static members of the Mathf class s
 //To signify that this class is not to be used as an object template, we mark it as static, by writing the static keyword before class.
 public static class FunctionLibrary
 {
+    static Function[] functions = { Wave, MultiWave, Ripple };
+    public delegate float Function(float x, float t);
+    public static Function GetFunction (int index) {
+		return functions[index];
+    }
+
     //By default methods are instance methods, which means that they have to be invoked on an object instance.
     //To make them work directly at the class level we have to mark it as static, just like FunctionLibrary itself.
     public static float Wave(float x, float t)
@@ -30,16 +36,5 @@ public static class FunctionLibrary
 		return y / (1f + 10f * d);
 	}
 
-    public delegate float Function(float x, float t);
-    public static Function GetFunction (int index) {
-		if (index == 0) {
-			return Wave;
-		}
-		else if (index == 1) {
-			return MultiWave;
-		}
-		else {
-			return Ripple;
-		}
-    }
+    
 }
